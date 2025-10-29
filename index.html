@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frendi - Your Fashion Destination</title>
+    <style>
+        /* MAJOR LAYOUT */
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+        
+        .line {
+            float: left;
+            width: 100%;
+            border-top: .25em solid #2c3e50;
+        }
+        
+        .wrapper {
+            margin: auto;
+            width: 100%;
+            max-width: 1200px;
+            min-height: 100%;
+        }
+        
+        header,
+        nav,
+        section,
+        footer {
+            float: left;
+            width: 100%;
+        }
+        
+        a {
+            text-decoration: none;
+            transition: color .25s;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 0.75em 1.25em;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: #e74c3c;
+            color: #fff;
+            border: 0;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background: #c0392b;
+        }
+        
+        .link {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        /* Typography Text Sizes */
+        html {
+            font: 16px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        h1 {
+            font-size: 1.75em;
+        }
+        
+        h2 {
+            font-size: 2em;
+        }
+        
+        h3 {
+            font-size: 1.75em;
+        }
+        
+        h4 {
+            font-size: 1.5em;
+        }
+        
+        p {
+            font-size: 1.25em;
+        }
+        
+        /* Header Banner style */
+        nav h1 {
+            float: left;
+            padding: .5em .5em 0 0;
+            font-size: 4em;
+        }
+        
+        nav h1 a {
+            color: #e74c3c;
+        }
+        
+        .nav-ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background: #2c3e50;
+        }
+        
+        header li {
+            width: 20%;
+        }
+        
+        header .nav-ul a {
+            display: block;
+            padding: 1.75em 0.5em;
+            font-size: 1.5em;
+            text-align: center;
+            text-transform: uppercase;
+            color: white;
+            background: #2c3e50;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        header .nav-ul a:hover {
+            background: #34495e;
+        }
+        
+        .logo {
+            width: 300px;
+            height: 150px;
+            object-fit: contain;
+        }
+        
+        section {
+            margin: 1em 0;
+        }
+        
+        section h1 {
+            text-transform: uppercase;
+        }
+        
+        hr {
+            border-color: #bdc3c7;
+            border-style: dashed;
+        }
+        
+        .vertical {
+            width: 0;
+            height: 10px;
+        }
+        
+        .sec-intro {
+            position: relative;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3em;
+            text-align: center;
+            border-radius: 10px;
+            margin: 2em 0;
+        }
+        
+        .sec-intro h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .sec-video {
+            text-align: center;
+            margin: 2em 0;
+        }
+        
+        .sec-video video {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .box {
+            float: left;
+            padding: 1em;
+            width: 25%;
+            height: 500px;
+            text-align: center;
+            background: white;
+            margin: 1em;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        
+        .box h1 {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #2c3e50;
+            margin: 0.5em 0;
+        }
+        
+        .box p {
+            margin-top: 0.75em;
+            font-size: 1em;
+            text-align: center;
+            color: #7f8c8d;
+        }
+        
+        .box .button {
+            margin: 1em auto;
+            display: block;
+            width: 80%;
+        }
+        
+        .box img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .sec-temp {
+            margin-top: 5em;
+            text-align: center;
+        }
+        
+        .sec-temp img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .sec-events > h1 {
+            margin-top: 1em;
+            display: block;
+            font-size: 2em;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .sec-events article {
+            float: left;
+            padding: 1em;
+            width: 33%;
+            text-align: justify;
+            background: white;
+            margin: 1em;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .sec-events article h1 {
+            display: block;
+            font-size: 1.5em;
+            font-weight: bold;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .sec-events article p {
+            display: block;
+            margin: 1em 0;
+            padding: 0;
+            font-size: 1em;
+            line-height: 1.6;
+        }
+        
+        .sec-events article a {
+            float: right;
+            padding-right: 1em;
+            color: #e74c3c;
+        }
+        
+        .sec-events img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1em;
+        }
+        
+        .sec-projects {
+            width: 60%;
+            background: white;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 2em 0;
+        }
+        
+        .sec-projects > h1 {
+            margin-top: 1em;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .sec-projects article {
+            padding: 1em 0;
+            width: 100%;
+        }
+        
+        .sec-projects article h1,
+        .sec-projects article p {
+            font-size: 1.1em;
+        }
+        
+        .sec-projects article h1 {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .sec-projects article p {
+            margin: 0.5em 0;
+            text-align: justify;
+            line-height: 1.6;
+        }
+        
+        .sec-projects p a {
+            float: right;
+            color: #e74c3c;
+        }
+        
+        .sec-standards {
+            width: 40%;
+            background: white;
+            padding: 2em;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 2em 0;
+        }
+        
+        .sec-standards > h1 {
+            margin-top: 1em;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .sec-standards article {
+            float: left;
+            padding: 1em;
+            width: 50%;
+            text-align: justify;
+        }
+        
+        .sec-standards article h1 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .sec-standards article p {
+            line-height: 1.6;
+        }
+        
+        .sec-partners h1 {
+            margin-top: 1em;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .sec-partners .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 2em 0;
+            width: 100%;
+        }
+        
+        .logo-container {
+            margin: 1em;
+            width: 100px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sec-partners img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+        
+        .sec-partners img:hover {
+            filter: grayscale(0%);
+        }
+        
+        footer {
+            margin: 2em 0 0 0;
+            padding: 2em;
+            width: 100%;
+            text-align: center;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        footer .nav-ul {
+            justify-content: center;
+            background: transparent;
+        }
+        
+        footer a {
+            display: inline;
+            padding: 10px;
+            font-size: 1.25em;
+            font-weight: bold;
+            color: #ecf0f1;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: #e74c3c;
+        }
+        
+        .copy {
+            font-size: 0.85em;
+            margin-top: 1em;
+            color: #bdc3c7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .box {
+                width: 50%;
+            }
+            
+            .sec-events article {
+                width: 100%;
+            }
+            
+            .sec-projects,
+            .sec-standards {
+                width: 100%;
+            }
+            
+            .sec-standards article {
+                width: 100%;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .box {
+                width: 100%;
+            }
+            
+            .nav-ul {
+                flex-direction: column;
+            }
+            
+            header li {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="line"></div>
+    
+    <div class="wrapper">
+        <header role="banner">
+            <nav role="navigation">
+                <ul class="nav-ul">
+                    <li><img src="logo2.png" alt="Frendi Logo" class="logo"></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main role="main">
+            <section class="sec-intro" role="section">
+                <h1>Welcome to Frendi - Your Fashion Destination!</h1>
+                <p>Discover the latest trends in clothing, shoes, and accessories</p>
+            </section>
+
+            <section class="sec-video" role="section">
+                <video width="100%" height="400" controls>
+                    <source src="movie.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </section>
+
+            <section class="sec-boxes" role="section">
+                <article class="box">
+                    <h1>Hoodies</h1>
+                    <a href="hoodpage.html">
+                        <img src="hood1.png" alt="Hoodie picture" width="250" height="300">
+                    </a>
+                    <p>The Best Match For Your Winters</p>
+                    <a href="hoodpage.html" class="button">Shop Now</a>
+                </article>
+                
+                <article class="box">
+                    <h1>Jackets</h1>
+                    <a href="jacketpage.html">
+                        <img src="jacket1.png" alt="Jacket Picture" width="250" height="300">
+                    </a>
+                    <p>High Quality Leather Jackets</p>
+                    <a href="jacketpage.html" class="button">Shop Now</a>
+                </article>
+                
+                <article class="box">
+                    <h1>T-Shirts</h1>
+                    <a href="shirtpage1.html">
+                        <img src="shirt1.png" alt="T Shirt Picture" width="250" height="300">
+                    </a>
+                    <p>Enjoy The Coolest Summers With Us</p>
+                    <a href="shirtpage1.html" class="button">Shop Now</a>
+                </article>
+                
+                <article class="box">
+                    <h1>Jeans</h1>
+                    <a href="jeanspage.html">
+                        <img src="j1.png" alt="Jeans Image" width="250" height="300">
+                    </a>
+                    <p>The Elite Denims At Your Door Step</p>
+                    <a href="jeanspage.html" class="button">Shop Now</a>
+                </article>
+                
+                <article class="box">
+                    <h1>Ladies Wear</h1>
+                    <img src="l13.png" alt="Ladies Wear Picture" width="250" height="300">
+                    <p>We Innovate The Trends</p>
+                    <a href="#" class="button">Coming Soon</a>
+                </article>
+                
+                <article class="box">
+                    <h1>Shoes</h1>
+                    <img src="shoe1.png" alt="Shoes Picture" width="250" height="300">
+                    <p>Because Your Each Step Counts</p>
+                    <a href="#" class="button">Coming Soon</a>
+                </article>
+                
+                <article class="box">
+                    <h1>Watches</h1>
+                    <img src="w1.png" alt="Watch Picture" width="250" height="300">
+                    <p>Make Your Time Real and Precious</p>
+                    <a href="#" class="button">Coming Soon</a>
+                </article>
+                
+                <article class="box">
+                    <h1>Accessories</h1>
+                    <img src="p1.png" alt="Accessories Image" width="250" height="300">
+                    <p>We provide You Your Needs</p>
+                    <a href="#" class="button">Coming Soon</a>
+                </article>
+            </section>
+
+            <section class="sec-temp" role="section">
+                <hr/>
+                <img src="COVER.PNG" alt="Frendi Collection" width="100%" height="500">
+            </section>
+
+            <section class="sec-events" role="section">
+                <hr />
+                <h1>Upcoming Events</h1>
+                <br>
+                
+                <article>
+                    <h1><img src="black_friday.png" alt="Black Friday Sale" width="400" height="150"></h1>
+                    <h1>The Great Black Friday Sale</h1>
+                    <p>Black Friday is an informal name for the Friday following Thanksgiving Day in the United States, which is celebrated on the fourth Thursday of November. We're celebrating this grand event by putting up to 50% off on our entire stock. Don't miss the chance and grab your best clothing on November 29th.</p>
+                    <a class="link" href="#">Learn More...</a>
+                </article>
+                
+                <article>
+                    <h1><img src="winter_sale.png" alt="Winter Sale" width="400" height="150"></h1>
+                    <h1>Winter Sale</h1>
+                    <p>When everyone is happy because of the winter holidays, why don't we enjoy this occasion! We're going to make you happy with our upcoming winter sale. We will give you up to 30% off on our classic hoodies so that you can make your winters even more classic. Don't forget to check again.</p>
+                    <a class="link" href="#">Learn More...</a>
+                </article>
+                
+                <article>
+                    <h1><img src="christmas.png" alt="Christmas Sale" width="400" height="150"></h1>
+                    <h1>Christmas Sale!</h1>
+                    <p>December 25th is the day of Christmas and the team of Frendi decided to announce a sale of flat 75% off on the entire stock. So, get ready to grab your best pairs of hoodies, shirts and jeans and don't miss this classy chance to fill your wardrobe with our elite products.</p>
+                    <a class="link" href="#">Learn More...</a>
+                </article>
+            </section>
+            
+            <div style="display: flex; flex-wrap: wrap; gap: 2em;">
+                <section class="sec-projects" role="section">
+                    <hr />
+                    <h1>Our Outlets & Offices</h1>
+                    <article>
+                        <h1>Karachi</h1>
+                        <p>We know that Karachi is the basic hub for fashion in Pakistan, so by targeting the right audience we started from Karachi and we're happy with the public response there. The people of Karachi have a great sense of fashion thus they enjoy our products very much.
+                            <br>
+                            Location: Plot#999, Block A, Bahria Town - Karachi.
+                            <br>
+                            Timings: 9:00 AM - 5:00 PM.
+                            <a class="link" href="#">Learn More...</a>
+                        </p>
+                    </article>
+                    
+                    <article>
+                        <h1>Lahore</h1>
+                        <p>The Lahore city is famous for its kind people. That's why we decided to open our second office in Lahore. The audience of Lahore is even greater than Karachi that's why we have three successful offices running in Lahore right now.
+                            <br>
+                            Location#1: Plot#885-A, J2 Block, Johar Town.
+                            <br>
+                            Location#2: Commercial Market, DHA, Lahore.
+                            <a class="link" href="#">Learn More...</a>
+                        </p>
+                    </article>
+                    
+                    <article>
+                        <h1>Faisalabad</h1>
+                        <p>After success in two cities, we made our way to the city of textiles. The variety of clothing there is classic and so is the trend. Our major warehouse is in Faisalabad so don't forget to visit.
+                            <br>
+                            Location: Plot#49, C block, Gulfishan Colony.
+                            <br>
+                            Timings: 9:00 AM - 5:00 PM
+                            <a class="link" href="#">Learn More...</a>
+                        </p>
+                    </article>
+                </section>
+                
+                <section class="sec-standards" role="section">
+                    <hr />
+                    <h1>Our Standards</h1>
+                    <article>
+                        <h1>Excellence</h1>
+                        <p>Our goal is to give our customers the best solutions in the highest quality. Our employees strive for excellence and work hard to achieve it. Everything must work and be reliable. Great design must be both aesthetic and functional. Products or services that pass these conditions will be everlasting.</p>
+                    </article>
+                    
+                    <article>
+                        <h1>Uniqueness</h1>
+                        <p>Our mantra is to create new paths. We are not interested in copying others because we know that if you want to succeed, you have to be different, unique. Our customers know that we create unique products and experiences for them. This is the best way to differentiate us and our brand from the noise in the market. Unique, different and proud.</p>
+                    </article>
+                </section>
+            </div>
+            
+            <section class="sec-partners" role="section">
+                <hr />
+                <h1>Our Partners</h1>
+                <div class="row">
+                    <div class="logo-container">
+                        <img src="champion.jpg" alt="Champion Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="nike.png" alt="Nike logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="gucci.png" alt="Gucci Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="versace.png" alt="Versace Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="adidas.png" alt="Adidas Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="levis.png" alt="Levis Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="puma.png" alt="Puma logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="tommy.jpg" alt="Tommy Hilfiger Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="vans.jpg" alt="Vans Logo" />
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <nav role="navigation">
+            <ul class="nav-ul">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="categories.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="payment.html">Payment</a></li>
+            </ul>
+        </nav>
+        <p class="copy">&copy; 2024 Frendi - Your Fashion Destination. All rights reserved.</p>
+    </footer>
+    <div class="line"></div>
+</body>
+</html>
