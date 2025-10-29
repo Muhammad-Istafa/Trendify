@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Information - Frendi</title>
+    <style>
+        /* MAJOR LAYOUT */
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+        
+        .line {
+            float: left;
+            width: 100%;
+            border-top: .25em solid #2c3e50;
+        }
+        
+        .wrapper {
+            margin: auto;
+            width: 100%;
+            max-width: 1200px;
+            min-height: 100%;
+        }
+        
+        header,
+        nav,
+        section,
+        footer {
+            float: left;
+            width: 100%;
+        }
+        
+        a {
+            text-decoration: none;
+            transition: color .25s;
+        }
+        
+        .button {
+            display: inline-block;
+            padding: 0.75em 1.25em;
+            font-size: 1em;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: #e74c3c;
+            color: #fff;
+            border: 0;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .button:hover {
+            background: #c0392b;
+        }
+        
+        .link {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        /* Typography Text Sizes */
+        html {
+            font: 16px 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        h1 {
+            font-size: 1.75em;
+        }
+        
+        h2 {
+            font-size: 2em;
+        }
+        
+        h3 {
+            font-size: 1.75em;
+        }
+        
+        h4 {
+            font-size: 1.5em;
+        }
+        
+        p {
+            font-size: 1.25em;
+        }
+        
+        /* Header Banner style */
+        nav h1 {
+            float: left;
+            padding: .5em .5em 0 0;
+            font-size: 4em;
+        }
+        
+        nav h1 a {
+            color: #e74c3c;
+        }
+        
+        .nav-ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            background: #2c3e50;
+        }
+        
+        header li {
+            width: 20%;
+        }
+        
+        header .nav-ul a {
+            display: block;
+            padding: 1.75em 0.5em;
+            font-size: 1.5em;
+            text-align: center;
+            text-transform: uppercase;
+            color: white;
+            background: #2c3e50;
+            width: 100%;
+            transition: background-color 0.3s;
+        }
+        
+        header .nav-ul a:hover {
+            background: #34495e;
+        }
+        
+        .logo {
+            width: 300px;
+            height: 150px;
+            object-fit: contain;
+        }
+        
+        section {
+            margin: 1em 0;
+        }
+        
+        section h1 {
+            text-transform: uppercase;
+        }
+        
+        hr {
+            border-color: #bdc3c7;
+            border-style: dashed;
+        }
+        
+        .payment-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4em 2em;
+            text-align: center;
+            border-radius: 10px;
+            margin: 2em 0;
+        }
+        
+        .payment-hero h1 {
+            font-size: 3em;
+            margin: 0 0 1em 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .payment-hero p {
+            font-size: 1.5em;
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        .payment-content {
+            background: white;
+            padding: 3em;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin: 2em 0;
+        }
+        
+        .payment-content h2 {
+            color: #2c3e50;
+            margin-bottom: 1em;
+        }
+        
+        .payment-content p {
+            line-height: 1.8;
+            margin-bottom: 1.5em;
+            color: #555;
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2em;
+            margin: 2em 0;
+        }
+        
+        .payment-card {
+            background: #f8f9fa;
+            padding: 2em;
+            border-radius: 10px;
+            border-left: 4px solid #e74c3c;
+            text-align: center;
+        }
+        
+        .payment-card h3 {
+            color: #2c3e50;
+            margin-bottom: 1em;
+        }
+        
+        .payment-card p {
+            color: #7f8c8d;
+            line-height: 1.6;
+            margin-bottom: 1em;
+        }
+        
+        .payment-notes {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 2em;
+            margin: 2em 0;
+        }
+        
+        .payment-notes h3 {
+            color: #856404;
+            margin-bottom: 1em;
+        }
+        
+        .payment-notes ul {
+            color: #856404;
+            line-height: 1.8;
+        }
+        
+        .payment-notes li {
+            margin-bottom: 0.5em;
+        }
+        
+        .sec-partners h1 {
+            margin-top: 1em;
+            text-align: center;
+            color: #2c3e50;
+        }
+        
+        .sec-partners .row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin: 2em 0;
+            width: 100%;
+        }
+        
+        .logo-container {
+            margin: 1em;
+            width: 100px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .sec-partners img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+        
+        .sec-partners img:hover {
+            filter: grayscale(0%);
+        }
+        
+        footer {
+            margin: 2em 0 0 0;
+            padding: 2em;
+            width: 100%;
+            text-align: center;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        footer .nav-ul {
+            justify-content: center;
+            background: transparent;
+        }
+        
+        footer a {
+            display: inline;
+            padding: 10px;
+            font-size: 1.25em;
+            font-weight: bold;
+            color: #ecf0f1;
+            transition: color 0.3s;
+        }
+        
+        footer a:hover {
+            color: #e74c3c;
+        }
+        
+        .copy {
+            font-size: 0.85em;
+            margin-top: 1em;
+            color: #bdc3c7;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            .payment-hero h1 {
+                font-size: 2em;
+            }
+            
+            .payment-hero p {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="line"></div>
+    
+    <div class="wrapper">
+        <header role="banner">
+            <nav role="navigation">
+                <ul class="nav-ul">
+                    <li><img src="logo2.png" alt="Frendi Logo" class="logo"></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="categories.html">Categories</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main role="main">
+            <section class="payment-hero" role="section">
+                <h1>Payment Information</h1>
+                <p>Secure and convenient payment options</p>
+            </section>
+
+            <section class="payment-content" role="section">
+                <h2>Accepted Payment Methods</h2>
+                <p>Frendi accepts credit and debit cards and transfers from your available Frendi account balance. We offer multiple secure payment options to ensure a convenient shopping experience.</p>
+                
+                <div class="payment-methods">
+                    <div class="payment-card">
+                        <h3>Credit & Debit Cards</h3>
+                        <p>We accept all major credit and debit cards including Visa, Mastercard, Discover, American Express, Diners Club, and JCB. All transactions are processed securely using industry-standard encryption.</p>
+                    </div>
+                    
+                    <div class="payment-card">
+                        <h3>Bank Transfer</h3>
+                        <p>You can pay directly from your bank account using our secure bank transfer option. This method is available for both local and international customers.</p>
+                    </div>
+                    
+                    <div class="payment-card">
+                        <h3>Cash on Delivery</h3>
+                        <p>For your convenience, we offer cash on delivery (COD) service for orders within Pakistan. Pay when you receive your order at your doorstep.</p>
+                    </div>
+                    
+                    <div class="payment-card">
+                        <h3>Mobile Wallets</h3>
+                        <p>Pay using popular mobile wallet services like JazzCash, EasyPaisa, and other supported digital payment platforms for quick and secure transactions.</p>
+                    </div>
+                </div>
+                
+                <h2>Security & Privacy</h2>
+                <p>Your payment information is protected by advanced security measures. We use SSL encryption to ensure that your personal and financial data remains secure during transmission. We never store your complete payment information on our servers.</p>
+                
+                <div class="payment-notes">
+                    <h3>Important Notes</h3>
+                    <ul>
+                        <li>In some circumstances, you might be limited to using Visa and Mastercard credit cards. In those cases, the checkout process will make that clear and will let you add one of those payment methods.</li>
+                        <li>We don't currently accept Amazon Pay, but we're working on adding more payment options in the future.</li>
+                        <li>Frendi Gift Cards can only be used to purchase eligible goods and services on Frendi and certain related sites as provided in the Frendi Gift Card Terms and Conditions.</li>
+                        <li>We don't currently accept Google Pay, but we're exploring options to add more digital payment methods.</li>
+                        <li>All prices are displayed in Pakistani Rupees (PKR) and include applicable taxes.</li>
+                        <li>For international orders, additional customs duties and taxes may apply and are the responsibility of the customer.</li>
+                    </ul>
+                </div>
+                
+                <h2>Refund Policy</h2>
+                <p>We offer a 30-day return policy for most items. If you're not satisfied with your purchase, you can return it within 30 days of delivery for a full refund or exchange. Some items may have different return policies, which will be clearly stated on the product page.</p>
+                
+                <h2>Need Help?</h2>
+                <p>If you have any questions about payment methods, billing, or need assistance with your order, please don't hesitate to contact our customer service team. We're here to help make your shopping experience as smooth as possible.</p>
+                <p><strong>Customer Service:</strong> +92 300 1234567 | <strong>Email:</strong> support@frendi.com</p>
+            </section>
+            
+            <section class="sec-partners" role="section">
+                <hr />
+                <h1>Our Partners</h1>
+                <div class="row">
+                    <div class="logo-container">
+                        <img src="champion.jpg" alt="Champion Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="nike.png" alt="Nike logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="gucci.png" alt="Gucci Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="versace.png" alt="Versace Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="adidas.png" alt="Adidas Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="levis.png" alt="Levis Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="puma.png" alt="Puma logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="tommy.jpg" alt="Tommy Hilfiger Logo" />
+                    </div>
+                    <div class="logo-container">
+                        <img src="vans.jpg" alt="Vans Logo" />
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <nav role="navigation">
+            <ul class="nav-ul">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About Us</a></li>
+                <li><a href="categories.html">Products</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="payment.html">Payment</a></li>
+            </ul>
+        </nav>
+        <p class="copy">&copy; 2024 Frendi - Your Fashion Destination. All rights reserved.</p>
+    </footer>
+    <div class="line"></div>
+</body>
+</html>
